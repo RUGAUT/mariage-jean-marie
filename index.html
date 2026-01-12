@@ -27,6 +27,7 @@
             background-position: center;
             color: #374151;
             animation: slowZoom 60s infinite alternate ease-in-out;
+            overflow-x: hidden; /* Empêche les barres latérales de cacher le scroll horizontal */
         }
 
         @keyframes slowZoom {
@@ -68,7 +69,7 @@
             }
         }
 
-        /* 3. Rotation lente (Anneaux) */
+        /* 3. Rotation lente (Anneaux Header) */
         .spin-slow {
             animation: spin 8s linear infinite;
         }
@@ -109,6 +110,7 @@
         }
 
         /* --- STYLE ÉGALISEUR (Equalizer) --- */
+        /* Égaliseur Centre (Section Musique) */
         .equalizer-container {
             display: flex;
             align-items: flex-end;
@@ -165,6 +167,76 @@
 
             100% {
                 height: 4px;
+            }
+        }
+
+        /* --- NOUVEAU : ÉGALISEUR SUR LES BORDURES --- */
+        .border-equalizer {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            height: 100vh;
+            pointer-events: none; /* Important pour ne pas gêner le clic */
+            z-index: 0;
+            opacity: 0.3; /* Très subtil */
+        }
+
+        .border-bar {
+            width: 100%;
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Animation spécifique pour les bordures (plus lentes) */
+        .playing .border-bar {
+            animation: borderEq 1.5s ease-in-out infinite;
+        }
+
+            .playing .border-bar:nth-child(odd) {
+                animation-duration: 1.2s;
+            }
+
+            .playing .border-bar:nth-child(even) {
+                animation-duration: 1.8s;
+            }
+
+        @keyframes borderEq {
+            0% {
+                height: 5px;
+                opacity: 0.2;
+            }
+
+            50% {
+                height: 40px;
+                opacity: 0.6;
+            }
+
+            100% {
+                height: 5px;
+                opacity: 0.2;
+            }
+        }
+
+        /* --- NOUVEAU : ANNEAUX FLOTTANTS --- */
+        .floating-ring {
+            position: fixed;
+            width: 100px; /* Un peu plus grand */
+            height: auto;
+            opacity: 0.15; /* Très discret */
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(1px); /* Un petit flou artistique */
+            animation: driftFloat 10s ease-in-out infinite alternate;
+        }
+
+        @keyframes driftFloat {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-30px) rotate(5deg);
             }
         }
 
@@ -248,7 +320,29 @@
 <body class="flex flex-col min-h-screen relative">
 
     <!-- Overlay Flou -->
-    <div class="fixed inset-0 glass-overlay -z-0"></div>
+    <div class="fixed inset-0 glass-overlay -z-10"></div>
+
+    <!-- --- IMAGE FLOTTANTE (Photo du couple) --- -->
+    <!-- J'ai utilisé la photo du couple. Changez l'URL si vous en voulez une autre. -->
+    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 15%; left: 5%; animation-delay: 0s; width: 120px; border-radius: 50%;">
+    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 65%; right: 5%; animation-delay: 2s; width: 150px; border-radius: 50%;">
+    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 40%; left: 80%; animation-delay: 4s; width: 100px; border-radius: 50%;">
+    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 80%; left: 10%; animation-delay: 1s; width: 90px; border-radius: 50%;">
+    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 5%; right: 20%; animation-delay: 3s; width: 110px; border-radius: 50%;">
+
+    <!-- ÉGALISEURS SUR LES BORDURES -->
+    <div class="fixed left-0 w-3 border-equalizer hidden md:flex">
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+    </div>
+    <div class="fixed right-0 w-3 border-equalizer hidden md:flex">
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+        <div class="border-bar"></div><div class="border-bar"></div><div class="border-bar"></div>
+    </div>
 
     <!-- Header / Hero -->
     <header class="relative z-10 bg-white/70 backdrop-blur-md shadow-sm overflow-hidden border-b border-white/50 transition-all duration-500" id="main-header">
@@ -371,6 +465,7 @@
                             <div id="qrcode" class="p-2"></div>
                         </div>
 
+                        <!-- Bouton Télécharger -->
                         <button onclick="downloadQR()" class="block mx-auto text-rose-600 hover:text-rose-800 text-sm font-semibold underline mb-4 hover:text-xl transition-all duration-300">
                             💾 Télécharger mon code QR
                         </button>
@@ -692,6 +787,7 @@
         // 2. Variable globale pour le lecteur
         var player;
         const equalizer = document.getElementById('equalizer');
+        const borders = document.querySelectorAll('.border-equalizer'); // Sélectionne les bordures
 
         // 3. Fonction appelée par l'API YouTube quand elle est prête
         function onYouTubeIframeAPIReady() {
@@ -738,11 +834,26 @@
                 equalizer.classList.add('playing');
                 equalizer.classList.remove('opacity-50');
                 equalizer.classList.add('opacity-100');
+
+                // ANIMATION DES BORDURES AUSSI
+                borders.forEach(border => {
+                    border.classList.add('playing');
+                    border.classList.remove('opacity-30');
+                    border.classList.add('opacity-50');
+                });
+
             } else {
                 // Musique OFF/Pause : On arrête l'animation
                 equalizer.classList.remove('playing');
                 equalizer.classList.add('opacity-50');
                 equalizer.classList.remove('opacity-100');
+
+                // STOP BORDURES
+                borders.forEach(border => {
+                    border.classList.remove('playing');
+                    border.classList.add('opacity-30');
+                    border.classList.remove('opacity-50');
+                });
             }
         }
     </script>
