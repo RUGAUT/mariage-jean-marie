@@ -1,0 +1,737 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfroMonde Actu | Navigation Active</title>
+    <!-- Importation des polices et icônes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES CSS --- */
+        :root {
+            --primary-color: #c0392b;
+            --secondary-color: #2c3e50;
+            --accent-color: #d35400;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Merriweather', serif;
+            color: var(--secondary-color);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-bar {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.5rem 2rem;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            letter-spacing: -1px;
+        }
+
+            .logo span {
+                color: var(--secondary-color);
+            }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+            .nav-links a {
+                font-weight: 500;
+                color: var(--text-dark);
+                position: relative;
+            }
+
+                .nav-links a:hover, .nav-links a.active-nav {
+                    color: var(--primary-color);
+                }
+
+                    .nav-links a.active-nav::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -5px;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        background: var(--primary-color);
+                    }
+
+        .search-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--secondary-color);
+        }
+
+        .breaking-news {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 2rem;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .breaking-label {
+            background: var(--accent-color);
+            padding: 0 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        .ticker-wrap {
+            flex: 1;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-move {
+            display: inline-block;
+            animation: ticker 30s linear infinite;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-size: 0.9rem;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-article {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            height: 450px;
+            box-shadow: var(--shadow);
+        }
+
+            .main-article img {
+                width: 100%;
+                height: 100%;
+                transition: transform 0.5s ease;
+            }
+
+            .main-article:hover img {
+                transform: scale(1.05);
+            }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 2rem;
+            color: white;
+        }
+
+        .tag {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .meta-info {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .side-stories {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .side-card {
+            flex: 1;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+            .side-card img {
+                height: 140px;
+                width: 100%;
+            }
+
+        .side-card-content {
+            padding: 1rem;
+        }
+
+        .side-card h3 {
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: -0.6rem;
+                left: 0;
+                width: 60px;
+                height: 3px;
+                background-color: var(--primary-color);
+            }
+
+        .filters button {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            color: var(--text-light);
+            transition: var(--transition);
+            margin-left: 0.5rem;
+        }
+
+            .filters button.active, .filters button:hover {
+                background-color: var(--secondary-color);
+                color: white;
+                border-color: var(--secondary-color);
+            }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+            .news-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .card-image img {
+                width: 100%;
+                height: 100%;
+                transition: transform 0.5s ease;
+            }
+
+        .news-card:hover .card-image img {
+            transform: scale(1.1);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-category {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .card-excerpt {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        .skeleton {
+            background: #eee;
+            background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+            border-radius: 4px;
+            background-size: 200% 100%;
+            animation: 1.5s shine linear infinite;
+        }
+
+        .skeleton-img {
+            height: 200px;
+            width: 100%;
+        }
+
+        .skeleton-text {
+            height: 16px;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .skeleton-title {
+            height: 24px;
+            margin-bottom: 15px;
+            width: 80%;
+        }
+
+        @keyframes shine {
+            to {
+                background-position-x: -200%;
+            }
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 4rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmin(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                grid-template-columns: 1fr;
+            }
+
+            .main-article {
+                height: 300px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+            /* Pour mobile on cache pour simplifier */
+            .top-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span id="date-display">Lundi, 1 Janvier 2024</span>
+        <div class="social-icons">
+            <i class="fab fa-twitter" style="margin: 0 10px;"></i>
+            <i class="fab fa-facebook" style="margin: 0 10px;"></i>
+        </div>
+    </div>
+
+    <header>
+        <div class="main-header">
+            <a href="#" class="logo" onclick="filterContent('all')">Afro<span>Monde</span></a>
+            <!-- MODIFICATION ICI : Ajout des onclick sur la navigation -->
+            <nav class="nav-links">
+                <a href="#" onclick="filterContent('all', this)" class="active-nav">Accueil</a>
+                <a href="#" onclick="filterContent('africa', this)">Afrique</a>
+                <a href="#" onclick="filterContent('world', this)">Monde</a>
+                <a href="#" onclick="filterContent('politique', this)">Politique</a>
+            </nav>
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+    </header>
+
+    <div class="breaking-news">
+        <span class="breaking-label">Dernière heure</span>
+        <div class="ticker-wrap">
+            <div class="ticker-move">
+                <span class="ticker-item">Navigation activée sur toutes les catégories</span>
+                <span class="ticker-item">API Connexion: OK</span>
+                <span class="ticker-item">Cliquez sur les liens du menu pour filtrer</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="hero-section" id="hero-container">
+            <div class="main-article"><div class="skeleton skeleton-img"></div></div>
+            <div class="side-stories">
+                <div class="side-card"><div class="skeleton skeleton-img"></div></div>
+                <div class="side-card"><div class="skeleton skeleton-img"></div></div>
+            </div>
+        </section>
+
+        <main>
+            <div class="section-header">
+                <h2 class="section-title" id="grid-title">Actualités Récentes</h2>
+                <!-- Les boutons de filtres rapides -->
+                <div class="filters">
+                    <button class="active" onclick="filterContent('all')">Tout</button>
+                    <button onclick="filterContent('africa')">Afrique</button>
+                    <button onclick="filterContent('world')">Monde</button>
+                </div>
+            </div>
+
+            <div class="news-grid" id="news-feed">
+                <div class="news-card"><div class="skeleton skeleton-img"></div><div class="card-content"><div class="skeleton skeleton-text skeleton-title"></div></div></div>
+                <div class="news-card"><div class="skeleton skeleton-img"></div><div class="card-content"><div class="skeleton skeleton-text skeleton-title"></div></div></div>
+                <div class="news-card"><div class="skeleton skeleton-img"></div><div class="card-content"><div class="skeleton skeleton-text skeleton-title"></div></div></div>
+            </div>
+
+            <div id="status-message" style="text-align: center; padding: 20px; color: #666; font-weight: bold;"></div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>AfroMonde</h4>
+                <p>Vos actualités filtrées par catégorie.</p>
+            </div>
+        </div>
+        <div class="copyright">&copy; 2024 AfroMonde Actu.</div>
+    </footer>
+
+    <script>
+        const API_KEY = '3bbf3f5582f848189dc0291ee48f8c99';
+
+        let allArticles = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateDate();
+            fetchNewsWithProxy();
+        });
+
+        function updateDate() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            const dateString = today.toLocaleDateString('fr-FR', options);
+            document.getElementById('date-display').textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+        }
+
+        async function fetchNewsWithProxy() {
+            const statusMsg = document.getElementById('status-message');
+            statusMsg.style.display = 'block';
+            statusMsg.textContent = "Chargement des actualités...";
+            statusMsg.style.color = "#e67e22";
+
+            try {
+                const africaUrl = `https://newsapi.org/v2/everything?q=africa&apiKey=${API_KEY}`;
+                const worldUrl = `https://newsapi.org/v2/everything?q=world&apiKey=${API_KEY}`;
+                const proxyAfrica = `https://corsproxy.io/?${encodeURIComponent(africaUrl)}`;
+                const proxyWorld = `https://corsproxy.io/?${encodeURIComponent(worldUrl)}`;
+
+                const [reqAfrica, reqWorld] = await Promise.all([
+                    fetch(proxyAfrica),
+                    fetch(proxyWorld)
+                ]);
+
+                const dataAfrica = await reqAfrica.json();
+                const dataWorld = await reqWorld.json();
+
+                if (dataAfrica.status === "error") throw new Error(dataAfrica.message);
+
+                const africaNews = dataAfrica.articles.map(item => ({ ...item, category: 'africa' }));
+                const worldNews = dataWorld.articles.map(item => ({ ...item, category: 'world' }));
+
+                allArticles = [...africaNews, ...worldNews].filter(item => item.urlToImage);
+
+                if (allArticles.length === 0) throw new Error("Aucun article trouvé.");
+
+                renderNews(allArticles);
+                statusMsg.style.display = 'none';
+
+            } catch (error) {
+                console.error("Erreur:", error);
+                statusMsg.style.color = "red";
+                statusMsg.textContent = "Erreur de chargement. Veuillez rafraîchir la page.";
+            }
+        }
+
+        // --- FONCTION UNIVERSELLE DE FILTRAGE ---
+        function filterContent(category, navElement = null) {
+            // Empêcher le comportement par défaut du lien (rechargement de page)
+            if (event) event.preventDefault();
+
+            // 1. Gestion visuelle de la Navigation (Menu du haut)
+            if (navElement) {
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-nav'));
+                navElement.classList.add('active-nav');
+            } else {
+                // Si on clique depuis les boutons du bas, on réinitialise la Nav du haut
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-nav'));
+                // On essaie de matcher le bon lien de nav
+                const navMap = { 'all': 0, 'africa': 1, 'world': 2 };
+                if (navMap[category] !== undefined) {
+                    document.querySelectorAll('.nav-links a')[navMap[category]].classList.add('active-nav');
+                }
+            }
+
+            // 2. Gestion visuelle des Boutons (Menu du bas)
+            const buttons = document.querySelectorAll('.filters button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Si la catégorie correspond à un bouton, on l'active
+            const btnIndex = { 'all': 0, 'africa': 1, 'world': 2 };
+            if (btnIndex[category] !== undefined) {
+                buttons[btnIndex[category]].classList.add('active');
+            }
+
+            // 3. Filtrage des données
+            let filtered = [];
+            let titleText = "Actualités Récentes";
+
+            if (category === 'all') {
+                filtered = allArticles;
+            } else if (category === 'africa') {
+                filtered = allArticles.filter(item => item.category === 'africa');
+                titleText = "Actualités Africaines";
+            } else if (category === 'world') {
+                filtered = allArticles.filter(item => item.category === 'world');
+                titleText = "Actualités Mondiales";
+            } else if (category === 'politique') {
+                titleText = "Politique & Gouvernement";
+                // Recherche par mots-clés (Français et Anglais)
+                const keywords = ['politique', 'gouvernement', 'election', 'président', 'law', 'government', 'politics', 'elections', 'president', 'minister'];
+                filtered = allArticles.filter(item => {
+                    const content = (item.title + " " + item.description).toLowerCase();
+                    return keywords.some(keyword => content.includes(keyword));
+                });
+            }
+
+            // 4. Mise à jour de l'affichage
+            document.getElementById('grid-title').textContent = titleText;
+
+            if (filtered.length === 0) {
+                document.getElementById('news-feed').innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:2rem;">Aucun article trouvé dans cette catégorie.</p>';
+                // On vide le hero aussi
+                document.getElementById('hero-container').innerHTML = '<div style="grid-column:1/-1; height:300px; display:flex; align-items:center; justify-content:center; color:#999;">Aucun article à la une pour cette sélection.</div>';
+            } else {
+                renderNews(filtered);
+            }
+
+            // Remonter en haut de page
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderNews(articles) {
+            const grid = document.getElementById('news-feed');
+            const heroSection = document.getElementById('hero-container');
+
+            if (articles.length > 0) {
+                const heroArticle = articles[0];
+                const sideArticles = articles.slice(1, 3);
+
+                const heroHTML = `
+                        <article class="main-article">
+                            <img src="${heroArticle.urlToImage}" alt="${heroArticle.title}">
+                            <div class="hero-content">
+                                <span class="tag">${heroArticle.category === 'africa' ? 'Afrique' : 'Monde'}</span>
+                                <h2>${heroArticle.title}</h2>
+                                <div class="meta-info">
+                                    <i class="far fa-clock"></i> ${formatDate(heroArticle.publishedAt)}
+                                    <span style="margin: 0 10px">|</span>
+                                    ${heroArticle.source.name}
+                                </div>
+                            </div>
+                        </article>
+                        <div class="side-stories">
+                            ${sideArticles.map(article => `
+                                <article class="side-card">
+                                    <img src="${article.urlToImage}" alt="${article.title}">
+                                    <div class="side-card-content">
+                                        <span class="tag" style="background:var(--secondary-color)">${article.category === 'africa' ? 'Afrique' : 'Monde'}</span>
+                                        <h3>${article.title}</h3>
+                                        <small style="color:#666">${formatDate(article.publishedAt)}</small>
+                                    </div>
+                                </article>
+                            `).join('')}
+                        </div>
+                    `;
+                heroSection.innerHTML = heroHTML;
+            }
+
+            if (articles.length > 3) {
+                const gridArticles = articles.slice(3);
+                grid.innerHTML = gridArticles.map(article => `
+                        <article class="news-card">
+                            <div class="card-image">
+                                <img src="${article.urlToImage}" alt="${article.title}">
+                            </div>
+                            <div class="card-content">
+                                <div class="card-category">${article.category === 'africa' ? 'Afrique' : 'Monde'}</div>
+                                <h3 class="card-title"><a href="#">${article.title}</a></h3>
+                                <p class="card-excerpt">${article.description}</p>
+                                <div class="card-footer">
+                                    <span><i class="far fa-clock"></i> ${formatDate(article.publishedAt)}</span>
+                                    <span>${article.source.name}</span>
+                                </div>
+                            </div>
+                        </article>
+                    `).join('');
+            } else if (articles.length <= 3 && articles.length > 0) {
+                grid.innerHTML = ''; // Pas assez d'articles pour la grille
+            }
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+        }
+    </script>
+</body>
+</html>
