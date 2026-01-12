@@ -3,734 +3,747 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AfroMonde Actu | Navigation Active</title>
-    <!-- Importation des polices et icônes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Jean & Marie - Notre Mariage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 
     <style>
-        /* --- VARIABLES CSS --- */
         :root {
-            --primary-color: #c0392b;
-            --secondary-color: #2c3e50;
-            --accent-color: #d35400;
-            --text-dark: #1a1a1a;
-            --text-light: #666666;
-            --bg-light: #f8f9fa;
-            --white: #ffffff;
-            --border-radius: 8px;
-            --shadow: 0 4px 6px rgba(0,0,0,0.05);
-            --transition: all 0.3s ease;
+            --primary: #be185d;
+            --secondary: #fdfbf7;
+            --accent: #fce7f3;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* --- ANIMATIONS --- */
 
+        /* 1. Arrière-plan "Respirant" (Zoom lent) */
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Lato', sans-serif;
+            background-image: url('https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd');
+            background-attachment: fixed;
+            background-size: 105%;
+            background-position: center;
+            color: #374151;
+            animation: slowZoom 60s infinite alternate ease-in-out;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Merriweather', serif;
-            color: var(--secondary-color);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-            object-fit: cover;
-        }
-
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .top-bar {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            padding: 0.5rem 2rem;
-            font-size: 0.85rem;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .main-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--primary-color);
-            letter-spacing: -1px;
-        }
-
-            .logo span {
-                color: var(--secondary-color);
-            }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-            .nav-links a {
-                font-weight: 500;
-                color: var(--text-dark);
-                position: relative;
-            }
-
-                .nav-links a:hover, .nav-links a.active-nav {
-                    color: var(--primary-color);
-                }
-
-                    .nav-links a.active-nav::after {
-                        content: '';
-                        position: absolute;
-                        bottom: -5px;
-                        left: 0;
-                        width: 100%;
-                        height: 2px;
-                        background: var(--primary-color);
-                    }
-
-        .search-btn {
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            cursor: pointer;
-            color: var(--secondary-color);
-        }
-
-        .breaking-news {
-            background: var(--primary-color);
-            color: white;
-            padding: 0.5rem 2rem;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .breaking-label {
-            background: var(--accent-color);
-            padding: 0 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            z-index: 2;
-        }
-
-        .ticker-wrap {
-            flex: 1;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .ticker-move {
-            display: inline-block;
-            animation: ticker 30s linear infinite;
-        }
-
-        .ticker-item {
-            display: inline-block;
-            padding: 0 2rem;
-            font-size: 0.9rem;
-        }
-
-        @keyframes ticker {
+        @keyframes slowZoom {
             0% {
-                transform: translateX(0);
+                background-size: 100%;
             }
 
             100% {
-                transform: translateX(-100%);
+                background-size: 110%;
             }
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
+        h1, h2, h3, .serif-font {
+            font-family: 'Playfair Display', serif;
         }
 
-        .hero-section {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+        /* Effet Verre (Glassmorphism) */
+        .glass-overlay {
+            background-color: rgba(253, 251, 247, 0.80);
+            backdrop-filter: blur(4px);
         }
 
-        .main-article {
+        /* 2. Animation de flottement (Icons) */
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* 3. Rotation lente (Anneaux) */
+        .spin-slow {
+            animation: spin 8s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 4. Apparition au Scroll (Reveal) */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+            .reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        /* 5. Effet de "Pop" pour le ticket */
+        .pop-in {
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* --- STYLE ÉGALISEUR (Equalizer) --- */
+        .equalizer-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            height: 40px;
+            gap: 4px;
+            margin-left: 15px;
+        }
+
+        .bar {
+            width: 6px;
+            background-color: var(--primary);
+            height: 4px;
+            border-radius: 99px;
+            opacity: 0.6;
+            transition: height 0.2s ease;
+        }
+
+        /* Quand la musique joue, on active l'animation */
+        .playing .bar {
+            animation: equalize 0.8s ease-in-out infinite;
+            opacity: 1;
+        }
+
+            /* Délais différents pour chaque barre pour l'effet aléatoire */
+            .playing .bar:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .playing .bar:nth-child(2) {
+                animation-delay: 0.3s;
+            }
+
+            .playing .bar:nth-child(3) {
+                animation-delay: 0.5s;
+            }
+
+            .playing .bar:nth-child(4) {
+                animation-delay: 0.2s;
+            }
+
+            .playing .bar:nth-child(5) {
+                animation-delay: 0.4s;
+            }
+
+        @keyframes equalize {
+            0% {
+                height: 4px;
+            }
+
+            50% {
+                height: 35px;
+            }
+
+            100% {
+                height: 4px;
+            }
+        }
+
+        /* Design Timeline */
+        .timeline-item {
             position: relative;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            height: 450px;
-            box-shadow: var(--shadow);
+            padding-left: 2rem;
+            border-left: 2px solid #fce7f3;
         }
 
-            .main-article img {
-                width: 100%;
-                height: 100%;
-                transition: transform 0.5s ease;
-            }
-
-            .main-article:hover img {
-                transform: scale(1.05);
-            }
-
-        .hero-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            padding: 2rem;
-            color: white;
-        }
-
-        .tag {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.2rem 0.8rem;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .hero-content h2 {
-            font-size: 2rem;
-            color: white;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-
-        .meta-info {
-            font-size: 0.8rem;
-            opacity: 0.8;
-        }
-
-        .side-stories {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .side-card {
-            flex: 1;
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            display: flex;
-            flex-direction: column;
-        }
-
-            .side-card img {
-                height: 140px;
-                width: 100%;
-            }
-
-        .side-card-content {
-            padding: 1rem;
-        }
-
-        .side-card h3 {
-            font-size: 1.1rem;
-            line-height: 1.4;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 0.5rem;
-        }
-
-        .section-title {
-            font-size: 1.5rem;
-            position: relative;
-        }
-
-            .section-title::after {
+            .timeline-item::before {
                 content: '';
                 position: absolute;
-                bottom: -0.6rem;
-                left: 0;
-                width: 60px;
-                height: 3px;
-                background-color: var(--primary-color);
+                left: -6px;
+                top: 0.25rem;
+                width: 10px;
+                height: 10px;
+                background-color: #be185d;
+                border-radius: 50%;
+                border: 2px solid white;
+                box-shadow: 0 0 0 2px #fce7f3;
+                transition: all 0.3s;
             }
 
-        .filters button {
-            background: white;
-            border: 1px solid #ddd;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 500;
-            color: var(--text-light);
-            transition: var(--transition);
-            margin-left: 0.5rem;
-        }
-
-            .filters button.active, .filters button:hover {
-                background-color: var(--secondary-color);
-                color: white;
-                border-color: var(--secondary-color);
+            .timeline-item:hover::before {
+                transform: scale(1.3);
+                background-color: #f43f5e;
             }
 
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+        /* Loader */
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #be185d;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
         }
 
-        .news-card {
-            background: white;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-            .news-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
-
-        .card-image {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
-
-            .card-image img {
-                width: 100%;
-                height: 100%;
-                transition: transform 0.5s ease;
-            }
-
-        .news-card:hover .card-image img {
-            transform: scale(1.1);
-        }
-
-        .card-content {
-            padding: 1.5rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card-category {
-            color: var(--primary-color);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .card-excerpt {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            flex: 1;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-            font-size: 0.8rem;
-            color: #999;
-        }
-
-        .skeleton {
-            background: #eee;
-            background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
-            border-radius: 4px;
-            background-size: 200% 100%;
-            animation: 1.5s shine linear infinite;
-        }
-
-        .skeleton-img {
-            height: 200px;
-            width: 100%;
-        }
-
-        .skeleton-text {
-            height: 16px;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        .skeleton-title {
-            height: 24px;
-            margin-bottom: 15px;
-            width: 80%;
-        }
-
-        @keyframes shine {
-            to {
-                background-position-x: -200%;
-            }
-        }
-
-        footer {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 4rem 2rem 1rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmin(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            color: white;
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .copyright {
+        /* Toast */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        @media (max-width: 768px) {
-            .hero-section {
-                grid-template-columns: 1fr;
+            #toast.show {
+                visibility: visible;
+                opacity: 1;
+                bottom: 50px;
             }
 
-            .main-article {
-                height: 300px;
-            }
+        /* Reader */
+        #reader {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
 
-            .nav-links {
-                display: none;
-            }
-            /* Pour mobile on cache pour simplifier */
-            .top-bar {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
+        .header-icon {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col min-h-screen relative">
 
-    <div class="top-bar">
-        <span id="date-display">Lundi, 1 Janvier 2024</span>
-        <div class="social-icons">
-            <i class="fab fa-twitter" style="margin: 0 10px;"></i>
-            <i class="fab fa-facebook" style="margin: 0 10px;"></i>
-        </div>
-    </div>
+    <!-- Overlay Flou -->
+    <div class="fixed inset-0 glass-overlay -z-0"></div>
 
-    <header>
-        <div class="main-header">
-            <a href="#" class="logo" onclick="filterContent('all')">Afro<span>Monde</span></a>
-            <!-- MODIFICATION ICI : Ajout des onclick sur la navigation -->
-            <nav class="nav-links">
-                <a href="#" onclick="filterContent('all', this)" class="active-nav">Accueil</a>
-                <a href="#" onclick="filterContent('africa', this)">Afrique</a>
-                <a href="#" onclick="filterContent('world', this)">Monde</a>
-                <a href="#" onclick="filterContent('politique', this)">Politique</a>
-            </nav>
-            <button class="search-btn"><i class="fas fa-search"></i></button>
+    <!-- Header / Hero -->
+    <header class="relative z-10 bg-white/70 backdrop-blur-md shadow-sm overflow-hidden border-b border-white/50 transition-all duration-500" id="main-header">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-300 via-rose-500 to-rose-300"></div>
+        <nav class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center relative z-10">
+            <div class="flex items-center gap-3">
+                <!-- IMAGE DES ANNEAUX QUI TOURNENT LENTEMENT -->
+                <img src="https://z-cdn-media.chatglm.cn/files/f533c269-62ae-4ceb-8a80-7829081c6136.png?auth_key=1868240119-44ffa030be7049658808bb2491cea62b-0-d4a9eac438e758ec54b90969f4fb1a60" alt="Anneaux" class="header-icon spin-slow">
+
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800 leading-none tracking-wide">Jean & Marie</h1>
+                    <span class="text-xs text-rose-500 font-semibold tracking-widest uppercase animate-pulse">Le Grand Jour</span>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="switchTab('guest')" id="btn-guest" class="px-4 py-2 rounded-full text-sm font-semibold transition duration-300 bg-rose-600 text-white shadow-md hover:bg-rose-700 hover:shadow-lg transform hover:-translate-y-0.5">Invité</button>
+                <button onclick="switchTab('organizer')" id="btn-organizer" class="px-4 py-2 rounded-full text-sm font-semibold transition duration-300 bg-white/80 border border-gray-200 text-gray-600 hover:bg-white hover:shadow-md transform hover:-translate-y-0.5">Staff</button>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <div class="h-48 flex items-center justify-center text-center px-4 relative">
+            <div class="max-w-lg mx-auto reveal-on-scroll">
+                <p class="text-rose-400 italic font-serif text-lg mb-2 float-animation">Nous sommes heureux de vous inviter</p>
+                <h2 class="text-4xl md:text-5xl text-gray-800 font-bold mb-4 drop-shadow-sm">à célébrer notre amour</h2>
+                <p class="text-gray-600 font-semibold bg-white/50 inline-block px-4 py-1 rounded-full backdrop-blur-sm transition hover:scale-105 cursor-default">12 Août 2024</p>
+            </div>
         </div>
     </header>
 
-    <div class="breaking-news">
-        <span class="breaking-label">Dernière heure</span>
-        <div class="ticker-wrap">
-            <div class="ticker-move">
-                <span class="ticker-item">Navigation activée sur toutes les catégories</span>
-                <span class="ticker-item">API Connexion: OK</span>
-                <span class="ticker-item">Cliquez sur les liens du menu pour filtrer</span>
-            </div>
-        </div>
-    </div>
+    <main class="flex-grow p-4 max-w-4xl mx-auto w-full space-y-16 relative z-10 pb-20">
 
-    <div class="container">
-        <section class="hero-section" id="hero-container">
-            <div class="main-article"><div class="skeleton skeleton-img"></div></div>
-            <div class="side-stories">
-                <div class="side-card"><div class="skeleton skeleton-img"></div></div>
-                <div class="side-card"><div class="skeleton skeleton-img"></div></div>
+        <!-- SECTION 1: PROGRAMME -->
+        <section class="reveal-on-scroll">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl text-gray-800 serif-font mb-2">Déroulement de la Journée</h3>
+                <div class="w-16 h-1 bg-rose-400 mx-auto rounded-full shadow-md"></div>
+            </div>
+
+            <div class="bg-white/60 backdrop-blur-md rounded-2xl shadow-lg p-6 md:p-8 border border-white/50">
+                <div class="grid gap-8">
+                    <div class="timeline-item group hover:translate-x-2 transition-transform duration-300">
+                        <span class="text-xs font-bold text-rose-600 uppercase tracking-wide">14h30</span>
+                        <h4 class="text-lg font-bold text-gray-800 serif-font">Cérémonie Civile</h4>
+                        <p class="text-gray-600 text-sm mt-1">Accueil des invités à la Mairie pour la célébration officielle de l'union.</p>
+                    </div>
+                    <div class="timeline-item group hover:translate-x-2 transition-transform duration-300">
+                        <span class="text-xs font-bold text-rose-600 uppercase tracking-wide">16h00</span>
+                        <h4 class="text-lg font-bold text-gray-800 serif-font">Cérémonie Laïque</h4>
+                        <p class="text-gray-600 text-sm mt-1">Un moment d'émotion en plein air, dans les jardins du domaine, avec l'échange des vœux et des alliances.</p>
+                    </div>
+                    <div class="timeline-item group hover:translate-x-2 transition-transform duration-300">
+                        <span class="text-xs font-bold text-rose-600 uppercase tracking-wide">17h30</span>
+                        <h4 class="text-lg font-bold text-gray-800 serif-font">Cocktail & Vin d'Honneur</h4>
+                        <p class="text-gray-600 text-sm mt-1">Rafraîchissements, petits fours et photos souvenirs sur la terrasse, au son d'un groupe de jazz.</p>
+                    </div>
+                    <div class="timeline-item group hover:translate-x-2 transition-transform duration-300">
+                        <span class="text-xs font-bold text-rose-600 uppercase tracking-wide">20h00</span>
+                        <h4 class="text-lg font-bold text-gray-800 serif-font">Dîner de Gala</h4>
+                        <p class="text-gray-600 text-sm mt-1">Ouverture de la salle de réception pour le banquet de noces.</p>
+                    </div>
+                    <div class="timeline-item group hover:translate-x-2 transition-transform duration-300">
+                        <span class="text-xs font-bold text-rose-600 uppercase tracking-wide">22h30</span>
+                        <h4 class="text-lg font-bold text-gray-800 serif-font">Pièce Montée & Champagne</h4>
+                        <p class="text-gray-600 text-sm mt-1">Le moment gourmand avant de lancer les festivités.</p>
+                    </div>
+                    <div class="timeline-item group hover:translate-x-2 transition-transform duration-300">
+                        <span class="text-xs font-bold text-rose-600 uppercase tracking-wide">23h00</span>
+                        <h4 class="text-lg font-bold text-gray-800 serif-font">Ouverture du Bal</h4>
+                        <p class="text-gray-600 text-sm mt-1">Les mariés ouvrent la piste de danse pour une fête qui durera jusqu'au bout de la nuit.</p>
+                    </div>
+                    <div class="timeline-item border-none! group hover:translate-x-2 transition-transform duration-300">
+                        <span class="text-xs font-bold text-rose-600 uppercase tracking-wide">01h00</span>
+                        <h4 class="text-lg font-bold text-gray-800 serif-font">Bar de nuit & En-cas</h4>
+                        <p class="text-gray-600 text-sm mt-1">Pour reprendre des forces entre deux danses.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <main>
-            <div class="section-header">
-                <h2 class="section-title" id="grid-title">Actualités Récentes</h2>
-                <!-- Les boutons de filtres rapides -->
-                <div class="filters">
-                    <button class="active" onclick="filterContent('all')">Tout</button>
-                    <button onclick="filterContent('africa')">Afrique</button>
-                    <button onclick="filterContent('world')">Monde</button>
+        <!-- SECTION 2: RECHERCHE (Invité) -->
+        <section id="section-guest" class="reveal-on-scroll">
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-8 max-w-lg mx-auto text-center border border-white/60 transition-shadow duration-300 hover:shadow-2xl">
+                <div class="mb-6">
+                    <span class="inline-block p-3 rounded-full bg-rose-100 text-rose-600 mb-4 text-2xl float-animation">✉️</span>
+                    <h3 class="text-2xl text-gray-800 serif-font mb-2">Votre Invitation</h3>
+                    <p class="text-gray-500 text-sm">Entrez votre nom pour récupérer votre billet d'accès personnel.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="text-left">
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-1 ml-1">Nom complet</label>
+                        <input type="text" id="guest-name" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 outline-none bg-gray-50 focus:bg-white transition shadow-sm focus:shadow-md" placeholder="Ex: Martin Dupont">
+                    </div>
+                    <button onclick="searchGuest()" class="w-full bg-rose-600 text-white font-bold py-3 rounded-xl hover:bg-rose-700 transition shadow-md transform active:scale-95 duration-200">
+                        Obtenir mon QR Code
+                    </button>
+                </div>
+                <div id="loading-search" class="hidden mt-4">
+                    <div class="loader"></div>
+                    <p class="text-xs text-gray-400">Recherche dans la liste...</p>
                 </div>
             </div>
 
-            <div class="news-grid" id="news-feed">
-                <div class="news-card"><div class="skeleton skeleton-img"></div><div class="card-content"><div class="skeleton skeleton-text skeleton-title"></div></div></div>
-                <div class="news-card"><div class="skeleton skeleton-img"></div><div class="card-content"><div class="skeleton skeleton-text skeleton-title"></div></div></div>
-                <div class="news-card"><div class="skeleton skeleton-img"></div><div class="card-content"><div class="skeleton skeleton-text skeleton-title"></div></div></div>
+            <!-- Billet (Caché par défaut) -->
+            <div id="ticket-result" class="hidden max-w-lg mx-auto mt-6">
+                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 relative pop-in">
+                    <!-- Décoration papier -->
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] opacity-30 pointer-events-none"></div>
+
+                    <div class="p-8 relative z-10 text-center">
+                        <div class="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-xl">♥</span>
+                        </div>
+                        <p class="text-rose-500 text-xs font-bold uppercase tracking-widest mb-2">Invitation Confirmée</p>
+                        <h3 class="text-3xl text-gray-800 serif-font mb-1">Bonjour <span id="ticket-name-display"></span> !</h3>
+                        <p class="text-sm text-gray-400 mb-6">Nous avons hâte de vous y voir</p>
+
+                        <div class="bg-white border-2 border-dashed border-gray-200 rounded-xl p-4 inline-block mb-4 shadow-inner hover:scale-105 transition duration-300 cursor-pointer">
+                            <div id="qrcode" class="p-2"></div>
+                        </div>
+
+                        <button onclick="downloadQR()" class="block mx-auto text-rose-600 hover:text-rose-800 text-sm font-semibold underline mb-4 hover:text-xl transition-all duration-300">
+                            💾 Télécharger mon code QR
+                        </button>
+
+                        <div class="flex justify-center items-center gap-2 text-sm font-semibold text-gray-700 bg-green-50 text-green-700 py-2 px-4 rounded-full transition-colors duration-500">
+                            Statut: <span id="ticket-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- SECTION 3: ORGANISATEUR (Scanner) -->
+        <section id="section-organizer" class="hidden max-w-lg mx-auto reveal-on-scroll">
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg p-6 border border-white/60 transition-shadow duration-300 hover:shadow-2xl">
+                <div class="flex items-center gap-3 mb-4 pb-4 border-b">
+                    <span class="text-2xl">📷</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-800">Scanner d'Entrée</h3>
+                        <p class="text-xs text-gray-500">Mode Organisateur</p>
+                    </div>
+                </div>
+
+                <div class="rounded-xl overflow-hidden bg-black mb-4 relative min-h-[250px] flex items-center justify-center border border-gray-200 transition-all duration-500">
+                    <div id="reader" class="w-full"></div>
+                    <p id="camera-placeholder" class="text-white text-sm absolute">Caméra désactivée</p>
+                </div>
+
+                <div class="flex gap-3">
+                    <button id="start-scan-btn" onclick="startScanner()" class="flex-1 bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 text-sm transition transform hover:scale-105">Démarrer</button>
+                    <button id="stop-scan-btn" onclick="stopScanner()" class="flex-1 bg-gray-600 text-white font-bold py-2 rounded-lg hover:bg-gray-700 hidden text-sm transition transform hover:scale-105">Arrêter</button>
+                </div>
+
+                <div id="scan-log" class="hidden mt-4">
+                    <div class="bg-gray-50 p-3 rounded-lg flex items-center gap-3 transition-all duration-300 opacity-0 animate-pop">
+                        <div id="log-icon" class="text-2xl">--</div>
+                        <div>
+                            <p id="log-name" class="font-bold text-gray-800 text-sm">--</p>
+                            <p id="log-msg" class="text-xs text-gray-500">--</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: INFOS PRATIQUES -->
+        <section class="bg-white/60 backdrop-blur-md rounded-3xl p-8 md:p-10 text-center border border-white/50 reveal-on-scroll hover:bg-white/80 transition-colors duration-500">
+            <h3 class="text-2xl text-gray-800 serif-font mb-6">Lieux & Informations</h3>
+
+            <div class="grid md:grid-cols-2 gap-6 text-left">
+                <div class="bg-white/80 p-6 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="text-rose-500 text-xl mb-2 group-hover:scale-110 inline-block transition-transform">📍</div>
+                    <h4 class="font-bold text-gray-800 mb-1">Lieu Principal</h4>
+                    <p class="text-gray-600 text-sm">Domaine des Sources</p>
+                    <p class="text-gray-400 text-xs mt-1">Le trajet est indiqué par les panneaux "Mariage".</p>
+                </div>
+
+                <div class="bg-white/80 p-6 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 group">
+                    <div class="text-rose-500 text-xl mb-2 group-hover:scale-110 inline-block transition-transform">🎫</div>
+                    <h4 class="font-bold text-gray-800 mb-1">Accès</h4>
+                    <p class="text-gray-600 text-sm">Merci de vous munir de votre QR Code reçu lors de votre inscription.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: MUSIQUE (YouTube & Equalizer) -->
+        <section class="reveal-on-scroll">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl text-gray-800 serif-font mb-2 flex items-center justify-center gap-2">
+                    <span class="text-2xl">🎵</span> Ambiance Musicale
+                </h3>
+                <div class="w-16 h-1 bg-rose-400 mx-auto rounded-full"></div>
             </div>
 
-            <div id="status-message" style="text-align: center; padding: 20px; color: #666; font-weight: bold;"></div>
-        </main>
-    </div>
+            <div class="bg-white/90 backdrop-blur-md rounded-2xl shadow-xl p-4 md:p-6 border border-white/60 flex flex-col md:flex-row items-center gap-6">
+                <!-- Égaliseur -->
+                <div class="flex-1 w-full flex flex-col items-center justify-center text-center">
+                    <h4 class="font-serif font-bold text-gray-700 mb-2 text-lg">Notre Chanson</h4>
+                    <div id="equalizer" class="equalizer-container opacity-50 transition-opacity duration-300">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-2">Cliquez sur play pour écouter</p>
+                </div>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h4>AfroMonde</h4>
-                <p>Vos actualités filtrées par catégorie.</p>
+                <!-- Lecteur YouTube -->
+                <div class="flex-1 w-full aspect-video rounded-xl overflow-hidden shadow-inner bg-black relative">
+                    <!-- Fallback link if player fails to load -->
+                    <a href="https://www.youtube.com/watch?v=Dml0JEgRpc0" target="_blank" id="youtube-fallback" class="hidden absolute inset-0 z-10 flex items-center justify-center bg-black text-white font-bold">
+                        Regarder sur YouTube
+                    </a>
+                    <div id="youtube-player" class="w-full h-full"></div>
+                </div>
             </div>
-        </div>
-        <div class="copyright">&copy; 2024 AfroMonde Actu.</div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/80 backdrop-blur-md text-gray-400 py-8 text-center mt-12 border-t border-white/50">
+        <p class="font-serif text-lg text-gray-200 float-animation inline-block">Jean & Marie</p>
+        <p class="text-xs mt-2">Créé avec amour et code.</p>
     </footer>
 
+    <!-- Toast Notification -->
+    <div id="toast">Message</div>
+
     <script>
-        const API_KEY = '3bbf3f5582f848189dc0291ee48f8c99';
+        // --- CONFIGURATION ---
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-rJiaIClUBilZqLlFYFExwaelwM82qR-Mr6Y5gfgDDKHJfJVqb79cvv2XMxpixIvRBw/exec";
 
-        let allArticles = [];
+        let html5QrCode;
+        let isScanning = false;
 
-        document.addEventListener('DOMContentLoaded', () => {
-            updateDate();
-            fetchNewsWithProxy();
+        // --- OBSERVATEUR D'ANIMATION AU SCROLL ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(section => {
+            observer.observe(section);
         });
 
-        function updateDate() {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const today = new Date();
-            const dateString = today.toLocaleDateString('fr-FR', options);
-            document.getElementById('date-display').textContent = dateString.charAt(0).toUpperCase() + dateString.slice(1);
-        }
+        // --- NAVIGATION ---
+        function switchTab(tab) {
+            const guestSection = document.getElementById('section-guest');
+            const orgSection = document.getElementById('section-organizer');
+            const btnGuest = document.getElementById('btn-guest');
+            const btnOrg = document.getElementById('btn-organizer');
 
-        async function fetchNewsWithProxy() {
-            const statusMsg = document.getElementById('status-message');
-            statusMsg.style.display = 'block';
-            statusMsg.textContent = "Chargement des actualités...";
-            statusMsg.style.color = "#e67e22";
-
-            try {
-                const africaUrl = `https://newsapi.org/v2/everything?q=africa&apiKey=${API_KEY}`;
-                const worldUrl = `https://newsapi.org/v2/everything?q=world&apiKey=${API_KEY}`;
-                const proxyAfrica = `https://corsproxy.io/?${encodeURIComponent(africaUrl)}`;
-                const proxyWorld = `https://corsproxy.io/?${encodeURIComponent(worldUrl)}`;
-
-                const [reqAfrica, reqWorld] = await Promise.all([
-                    fetch(proxyAfrica),
-                    fetch(proxyWorld)
-                ]);
-
-                const dataAfrica = await reqAfrica.json();
-                const dataWorld = await reqWorld.json();
-
-                if (dataAfrica.status === "error") throw new Error(dataAfrica.message);
-
-                const africaNews = dataAfrica.articles.map(item => ({ ...item, category: 'africa' }));
-                const worldNews = dataWorld.articles.map(item => ({ ...item, category: 'world' }));
-
-                allArticles = [...africaNews, ...worldNews].filter(item => item.urlToImage);
-
-                if (allArticles.length === 0) throw new Error("Aucun article trouvé.");
-
-                renderNews(allArticles);
-                statusMsg.style.display = 'none';
-
-            } catch (error) {
-                console.error("Erreur:", error);
-                statusMsg.style.color = "red";
-                statusMsg.textContent = "Erreur de chargement. Veuillez rafraîchir la page.";
+            if (tab === 'guest') {
+                guestSection.classList.remove('hidden');
+                orgSection.classList.add('hidden');
+                btnGuest.className = "px-4 py-2 rounded-full text-sm font-semibold transition duration-300 bg-rose-600 text-white shadow-md hover:bg-rose-700 hover:shadow-lg transform hover:-translate-y-0.5";
+                btnOrg.className = "px-4 py-2 rounded-full text-sm font-semibold transition duration-300 bg-white/80 border border-gray-200 text-gray-600 hover:bg-white hover:shadow-md transform hover:-translate-y-0.5";
+                stopScanner();
+            } else {
+                guestSection.classList.add('hidden');
+                orgSection.classList.remove('hidden');
+                btnOrg.className = "px-4 py-2 rounded-full text-sm font-semibold transition duration-300 bg-rose-600 text-white shadow-md hover:bg-rose-700 hover:shadow-lg transform hover:-translate-y-0.5";
+                btnGuest.className = "px-4 py-2 rounded-full text-sm font-semibold transition duration-300 bg-white/80 border border-gray-200 text-gray-600 hover:bg-white hover:shadow-md transform hover:-translate-y-0.5";
             }
         }
 
-        // --- FONCTION UNIVERSELLE DE FILTRAGE ---
-        function filterContent(category, navElement = null) {
-            // Empêcher le comportement par défaut du lien (rechargement de page)
-            if (event) event.preventDefault();
+        function showToast(msg, isError = false) {
+            const t = document.getElementById("toast");
+            t.textContent = msg;
+            t.style.backgroundColor = isError ? "#e11d48" : "#10b981";
+            t.className = "show";
+            setTimeout(() => t.className = t.className.replace("show", ""), 3000);
+        }
 
-            // 1. Gestion visuelle de la Navigation (Menu du haut)
-            if (navElement) {
-                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-nav'));
-                navElement.classList.add('active-nav');
+        // --- TÉLÉCHARGER ---
+        window.downloadQR = () => {
+            const img = document.querySelector('#qrcode img');
+            if (img && img.src) {
+                const link = document.createElement('a');
+                link.href = img.src;
+                link.download = 'invitation-mariage.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             } else {
-                // Si on clique depuis les boutons du bas, on réinitialise la Nav du haut
-                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active-nav'));
-                // On essaie de matcher le bon lien de nav
-                const navMap = { 'all': 0, 'africa': 1, 'world': 2 };
-                if (navMap[category] !== undefined) {
-                    document.querySelectorAll('.nav-links a')[navMap[category]].classList.add('active-nav');
+                const canvas = document.querySelector('#qrcode canvas');
+                if (canvas) {
+                    const link = document.createElement('a');
+                    link.download = 'invitation-mariage.png';
+                    link.href = canvas.toDataURL();
+                    link.click();
                 }
             }
+        };
 
-            // 2. Gestion visuelle des Boutons (Menu du bas)
-            const buttons = document.querySelectorAll('.filters button');
-            buttons.forEach(btn => btn.classList.remove('active'));
+        // --- RECHERCHE ---
+        async function searchGuest() {
+            const nameInput = document.getElementById('guest-name');
+            const name = nameInput.value.trim();
+            const loader = document.getElementById('loading-search');
+            const ticketSection = document.getElementById('ticket-result');
 
-            // Si la catégorie correspond à un bouton, on l'active
-            const btnIndex = { 'all': 0, 'africa': 1, 'world': 2 };
-            if (btnIndex[category] !== undefined) {
-                buttons[btnIndex[category]].classList.add('active');
+            if (!name) return showToast("Veuillez entrer un nom", true);
+
+            loader.classList.remove('hidden');
+            ticketSection.classList.add('hidden');
+
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=search&name=${encodeURIComponent(name)}`);
+                const data = await response.json();
+
+                loader.classList.add('hidden');
+
+                if (data.success) {
+                    document.getElementById('qrcode').innerHTML = "";
+                    new QRCode(document.getElementById('qrcode'), {
+                        text: data.id,
+                        width: 160,
+                        height: 160,
+                        colorDark: "#be185d",
+                    });
+
+                    document.getElementById('ticket-name-display').textContent = data.name;
+                    const statusSpan = document.getElementById('ticket-status');
+
+                    if (data.status === 'Présent') {
+                        statusSpan.textContent = "Déjà validé";
+                        statusSpan.parentElement.className = "flex justify-center items-center gap-2 text-sm font-semibold text-yellow-700 bg-yellow-50 py-2 px-4 rounded-full mt-4";
+                    } else {
+                        statusSpan.textContent = "Valide";
+                        statusSpan.parentElement.className = "flex justify-center items-center gap-2 text-sm font-semibold text-green-700 bg-green-50 py-2 px-4 rounded-full mt-4";
+                    }
+
+                    ticketSection.classList.remove('hidden');
+                    ticketSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                } else {
+                    showToast(data.message || "Invité introuvable", true);
+                }
+            } catch (error) {
+                loader.classList.add('hidden');
+                console.error(error);
+                showToast("Erreur de connexion", true);
             }
+        }
 
-            // 3. Filtrage des données
-            let filtered = [];
-            let titleText = "Actualités Récentes";
+        // --- SCANNER ---
+        async function startScanner() {
+            if (!html5QrCode) html5QrCode = new Html5Qrcode("reader");
 
-            if (category === 'all') {
-                filtered = allArticles;
-            } else if (category === 'africa') {
-                filtered = allArticles.filter(item => item.category === 'africa');
-                titleText = "Actualités Africaines";
-            } else if (category === 'world') {
-                filtered = allArticles.filter(item => item.category === 'world');
-                titleText = "Actualités Mondiales";
-            } else if (category === 'politique') {
-                titleText = "Politique & Gouvernement";
-                // Recherche par mots-clés (Français et Anglais)
-                const keywords = ['politique', 'gouvernement', 'election', 'président', 'law', 'government', 'politics', 'elections', 'president', 'minister'];
-                filtered = allArticles.filter(item => {
-                    const content = (item.title + " " + item.description).toLowerCase();
-                    return keywords.some(keyword => content.includes(keyword));
+            document.getElementById('camera-placeholder').classList.add('hidden');
+
+            try {
+                await html5QrCode.start(
+                    { facingMode: "environment" },
+                    { fps: 10, qrbox: 250 },
+                    onScanSuccess,
+                    () => { }
+                );
+                isScanning = true;
+                document.getElementById('start-scan-btn').classList.add('hidden');
+                document.getElementById('stop-scan-btn').classList.remove('hidden');
+            } catch (err) {
+                showToast("Erreur caméra", true);
+                document.getElementById('camera-placeholder').classList.remove('hidden');
+            }
+        }
+
+        function stopScanner() {
+            if (html5QrCode && isScanning) {
+                html5QrCode.stop().then(() => {
+                    isScanning = false;
+                    document.getElementById('start-scan-btn').classList.remove('hidden');
+                    document.getElementById('stop-scan-btn').classList.add('hidden');
+                    document.getElementById('camera-placeholder').classList.remove('hidden');
                 });
             }
+        }
 
-            // 4. Mise à jour de l'affichage
-            document.getElementById('grid-title').textContent = titleText;
+        async function onScanSuccess(decodedText) {
+            await html5QrCode.pause();
 
-            if (filtered.length === 0) {
-                document.getElementById('news-feed').innerHTML = '<p style="grid-column: 1/-1; text-align:center; padding:2rem;">Aucun article trouvé dans cette catégorie.</p>';
-                // On vide le hero aussi
-                document.getElementById('hero-container').innerHTML = '<div style="grid-column:1/-1; height:300px; display:flex; align-items:center; justify-content:center; color:#999;">Aucun article à la une pour cette sélection.</div>';
+            try {
+                const response = await fetch(`${SCRIPT_URL}?action=checkin&id=${decodedText}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast(data.message);
+                    updateLog(data.name, data.message, "✅");
+                } else {
+                    showToast(data.message, true);
+                    updateLog(data.name || "Inconnu", data.message, "⚠️");
+                }
+            } catch (error) {
+                console.error(error);
+                showToast("Erreur réseau", true);
+            }
+
+            setTimeout(() => html5QrCode.resume(), 2500);
+        }
+
+        function updateLog(name, msg, icon) {
+            const log = document.getElementById('scan-log');
+            const logItem = log.firstElementChild;
+
+            log.classList.remove('hidden');
+            document.getElementById('log-name').textContent = name;
+            document.getElementById('log-msg').textContent = msg;
+            document.getElementById('log-icon').textContent = icon;
+
+            // Animation de réapparition du log
+            logItem.style.opacity = '0';
+            setTimeout(() => logItem.style.opacity = '1', 100);
+
+            if (icon === "✅") logItem.className = "bg-green-50 p-3 rounded-lg flex items-center gap-3 border border-green-100 shadow-sm";
+            else logItem.className = "bg-yellow-50 p-3 rounded-lg flex items-center gap-3 border border-yellow-100 shadow-sm";
+        }
+
+        // --- LOGIQUE YOUTUBE & ÉGALISEUR ---
+
+        // 1. Charger l'API YouTube de manière asynchrone
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 2. Variable globale pour le lecteur
+        var player;
+        const equalizer = document.getElementById('equalizer');
+
+        // 3. Fonction appelée par l'API YouTube quand elle est prête
+        function onYouTubeIframeAPIReady() {
+            // Récupération de l'origine actuelle (important pour corriger l'erreur 153)
+            const origin = window.location.origin || 'https://127.0.0.1:5500';
+
+            player = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: 'Dml0JEgRpc0', // ID VIDÉO
+                playerVars: {
+                    'playsinline': 1,
+                    'controls': 1,
+                    'rel': 0,
+                    'origin': origin, // AJOUT IMPORTANT POUR CORRIGER L'ERREUR
+                    'enablejsapi': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange,
+                    'onError': onPlayerError // Gestion d'erreur
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            // Le lecteur est prêt
+        }
+
+        // Gestionnaire d'erreur
+        function onPlayerError(event) {
+            // Si erreur 153 ou autre, on affiche le lien de secours
+            if (event.data === 100 || event.data === 150 || event.data === 153) {
+                console.error("Erreur YouTube:", event.data);
+                // Optionnel: Cacher l'égaliseur si la musique échoue
+                // equalizer.style.display = 'none';
+            }
+        }
+
+        // 4. Détecter si la vidéo joue ou s'arrête pour animer l'égaliseur
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                // Musique ON : On ajoute la classe 'playing' qui lance l'animation CSS
+                equalizer.classList.add('playing');
+                equalizer.classList.remove('opacity-50');
+                equalizer.classList.add('opacity-100');
             } else {
-                renderNews(filtered);
+                // Musique OFF/Pause : On arrête l'animation
+                equalizer.classList.remove('playing');
+                equalizer.classList.add('opacity-50');
+                equalizer.classList.remove('opacity-100');
             }
-
-            // Remonter en haut de page
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function renderNews(articles) {
-            const grid = document.getElementById('news-feed');
-            const heroSection = document.getElementById('hero-container');
-
-            if (articles.length > 0) {
-                const heroArticle = articles[0];
-                const sideArticles = articles.slice(1, 3);
-
-                const heroHTML = `
-                        <article class="main-article">
-                            <img src="${heroArticle.urlToImage}" alt="${heroArticle.title}">
-                            <div class="hero-content">
-                                <span class="tag">${heroArticle.category === 'africa' ? 'Afrique' : 'Monde'}</span>
-                                <h2>${heroArticle.title}</h2>
-                                <div class="meta-info">
-                                    <i class="far fa-clock"></i> ${formatDate(heroArticle.publishedAt)}
-                                    <span style="margin: 0 10px">|</span>
-                                    ${heroArticle.source.name}
-                                </div>
-                            </div>
-                        </article>
-                        <div class="side-stories">
-                            ${sideArticles.map(article => `
-                                <article class="side-card">
-                                    <img src="${article.urlToImage}" alt="${article.title}">
-                                    <div class="side-card-content">
-                                        <span class="tag" style="background:var(--secondary-color)">${article.category === 'africa' ? 'Afrique' : 'Monde'}</span>
-                                        <h3>${article.title}</h3>
-                                        <small style="color:#666">${formatDate(article.publishedAt)}</small>
-                                    </div>
-                                </article>
-                            `).join('')}
-                        </div>
-                    `;
-                heroSection.innerHTML = heroHTML;
-            }
-
-            if (articles.length > 3) {
-                const gridArticles = articles.slice(3);
-                grid.innerHTML = gridArticles.map(article => `
-                        <article class="news-card">
-                            <div class="card-image">
-                                <img src="${article.urlToImage}" alt="${article.title}">
-                            </div>
-                            <div class="card-content">
-                                <div class="card-category">${article.category === 'africa' ? 'Afrique' : 'Monde'}</div>
-                                <h3 class="card-title"><a href="#">${article.title}</a></h3>
-                                <p class="card-excerpt">${article.description}</p>
-                                <div class="card-footer">
-                                    <span><i class="far fa-clock"></i> ${formatDate(article.publishedAt)}</span>
-                                    <span>${article.source.name}</span>
-                                </div>
-                            </div>
-                        </article>
-                    `).join('');
-            } else if (articles.length <= 3 && articles.length > 0) {
-                grid.innerHTML = ''; // Pas assez d'articles pour la grille
-            }
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
         }
     </script>
 </body>
