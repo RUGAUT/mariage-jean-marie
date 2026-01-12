@@ -21,13 +21,14 @@
         /* 1. Arrière-plan "Respirant" (Zoom lent) */
         body {
             font-family: 'Lato', sans-serif;
-            background-image: url('https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd');
+            /* IMAGE PERSONNELLE POUR LE FOND GLOBAL : Marie1.jpeg */
+            background-image: url('./Marie1.jpeg');
             background-attachment: fixed;
-            background-size: 105%;
+            background-size: cover;
             background-position: center;
             color: #374151;
             animation: slowZoom 60s infinite alternate ease-in-out;
-            overflow-x: hidden; /* Empêche les barres latérales de cacher le scroll horizontal */
+            overflow-x: hidden;
         }
 
         @keyframes slowZoom {
@@ -176,9 +177,9 @@
             flex-direction: column;
             justify-content: space-around;
             height: 100vh;
-            pointer-events: none; /* Important pour ne pas gêner le clic */
+            pointer-events: none;
             z-index: 0;
-            opacity: 0.3; /* Très subtil */
+            opacity: 0.3;
         }
 
         .border-bar {
@@ -188,7 +189,6 @@
             border-radius: 4px;
         }
 
-        /* Animation spécifique pour les bordures (plus lentes) */
         .playing .border-bar {
             animation: borderEq 1.5s ease-in-out infinite;
         }
@@ -221,12 +221,12 @@
         /* --- NOUVEAU : ANNEAUX FLOTTANTS --- */
         .floating-ring {
             position: fixed;
-            width: 100px; /* Un peu plus grand */
+            width: 60px;
             height: auto;
-            opacity: 0.15; /* Très discret */
+            opacity: 0.25;
             pointer-events: none;
             z-index: 0;
-            filter: blur(1px); /* Un petit flou artistique */
+            filter: drop-shadow(0 4px 6px rgba(190, 24, 93, 0.2));
             animation: driftFloat 10s ease-in-out infinite alternate;
         }
 
@@ -236,7 +236,7 @@
             }
 
             100% {
-                transform: translateY(-30px) rotate(5deg);
+                transform: translateY(-30px) rotate(15deg);
             }
         }
 
@@ -322,13 +322,13 @@
     <!-- Overlay Flou -->
     <div class="fixed inset-0 glass-overlay -z-10"></div>
 
-    <!-- --- IMAGE FLOTTANTE (Photo du couple) --- -->
-    <!-- J'ai utilisé la photo du couple. Changez l'URL si vous en voulez une autre. -->
-    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 15%; left: 5%; animation-delay: 0s; width: 120px; border-radius: 50%;">
-    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 65%; right: 5%; animation-delay: 2s; width: 150px; border-radius: 50%;">
-    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 40%; left: 80%; animation-delay: 4s; width: 100px; border-radius: 50%;">
-    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 80%; left: 10%; animation-delay: 1s; width: 90px; border-radius: 50%;">
-    <img src="https://z-cdn-media.chatglm.cn/files/38412b94-3f4e-4935-8286-4ec1e2a71f7a.jpg?auth_key=1868240119-54f4dc1c0797472da1ff28c78bf16807-0-c3d69945cf212263d7426d9d1bf0f5cd" class="floating-ring" style="top: 5%; right: 20%; animation-delay: 3s; width: 110px; border-radius: 50%;">
+    <!-- ÉLÉMENTS DÉCORATIFS FLOTTANTS (Anneaux) -->
+    <!-- Remplacé par ./ring.png -->
+    <img src="./ring.png" class="floating-ring" style="top: 15%; left: 5%; animation-delay: 0s;">
+    <img src="./ring.png" class="floating-ring" style="top: 25%; right: 8%; animation-delay: 2s;">
+    <img src="./ring.png" class="floating-ring" style="top: 70%; left: 10%; animation-delay: 4s; transform: scale(1.5);">
+    <img src="./ring.png" class="floating-ring" style="top: 85%; right: 5%; animation-delay: 1s;">
+    <img src="./ring.png" class="floating-ring" style="top: 40%; left: 90%; animation-delay: 3s;">
 
     <!-- ÉGALISEURS SUR LES BORDURES -->
     <div class="fixed left-0 w-3 border-equalizer hidden md:flex">
@@ -364,11 +364,24 @@
         </nav>
 
         <!-- Hero Section -->
-        <div class="h-48 flex items-center justify-center text-center px-4 relative">
-            <div class="max-w-lg mx-auto reveal-on-scroll">
-                <p class="text-rose-400 italic font-serif text-lg mb-2 float-animation">Nous sommes heureux de vous inviter</p>
-                <h2 class="text-4xl md:text-5xl text-gray-800 font-bold mb-4 drop-shadow-sm">à célébrer notre amour</h2>
-                <p class="text-gray-600 font-semibold bg-white/50 inline-block px-4 py-1 rounded-full backdrop-blur-sm transition hover:scale-105 cursor-default">12 Août 2024</p>
+        <!-- MODIFICATION : Ajout de la vidéo en arrière-plan -->
+        <!-- 'relative' pour positionner la vidéo et 'overflow-hidden' pour contenir la vidéo -->
+        <div class="h-56 md:h-64 flex items-center justify-center text-center px-4 relative overflow-hidden">
+            <!-- VIDEO 5s EN BOUCLE -->
+            <!-- autoplay: lance direct, loop: boucle, muted: sans son (obligatoire pour l'autoplay), playsinline: iOS -->
+            <!-- poster="./Marie2.jpeg" : Image qui s'affiche si la vidéo ne charge pas -->
+            <video autoplay loop muted playsinline
+                   class="absolute inset-0 w-full h-full object-cover -z-10"
+                   src="./video5.mp4" poster="./Marie2.jpeg">
+            </video>
+
+            <!-- Voile blanc semi-transparent pour que le texte soit lisible -->
+            <div class="absolute inset-0 bg-white/60 backdrop-blur-sm z-0"></div>
+
+            <div class="relative z-10 max-w-lg mx-auto reveal-on-scroll py-6">
+                <p class="text-rose-400 italic font-serif text-lg mb-2 float-animation drop-shadow-md">Nous sommes heureux de vous inviter</p>
+                <h2 class="text-4xl md:text-5xl text-gray-800 font-bold mb-4 drop-shadow-md font-semibold">à célébrer notre amour</h2>
+                <p class="text-gray-600 font-semibold bg-white/50 inline-block px-4 py-1 rounded-full backdrop-blur-sm transition hover:scale-105 cursor-default shadow-sm">12 Août 2024</p>
             </div>
         </div>
     </header>
@@ -787,7 +800,7 @@
         // 2. Variable globale pour le lecteur
         var player;
         const equalizer = document.getElementById('equalizer');
-        const borders = document.querySelectorAll('.border-equalizer'); // Sélectionne les bordures
+        const borders = document.querySelectorAll('.border-equalizer');
 
         // 3. Fonction appelée par l'API YouTube quand elle est prête
         function onYouTubeIframeAPIReady() {
@@ -797,18 +810,18 @@
             player = new YT.Player('youtube-player', {
                 height: '100%',
                 width: '100%',
-                videoId: 'Dml0JEgRpc0', // ID VIDÉO
+                videoId: 'Dml0JEgRpc0',
                 playerVars: {
                     'playsinline': 1,
                     'controls': 1,
                     'rel': 0,
-                    'origin': origin, // AJOUT IMPORTANT POUR CORRIGER L'ERREUR
+                    'origin': origin,
                     'enablejsapi': 1
                 },
                 events: {
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange,
-                    'onError': onPlayerError // Gestion d'erreur
+                    'onError': onPlayerError
                 }
             });
         }
@@ -817,25 +830,19 @@
             // Le lecteur est prêt
         }
 
-        // Gestionnaire d'erreur
         function onPlayerError(event) {
-            // Si erreur 153 ou autre, on affiche le lien de secours
             if (event.data === 100 || event.data === 150 || event.data === 153) {
                 console.error("Erreur YouTube:", event.data);
-                // Optionnel: Cacher l'égaliseur si la musique échoue
-                // equalizer.style.display = 'none';
             }
         }
 
         // 4. Détecter si la vidéo joue ou s'arrête pour animer l'égaliseur
         function onPlayerStateChange(event) {
             if (event.data == YT.PlayerState.PLAYING) {
-                // Musique ON : On ajoute la classe 'playing' qui lance l'animation CSS
                 equalizer.classList.add('playing');
                 equalizer.classList.remove('opacity-50');
                 equalizer.classList.add('opacity-100');
 
-                // ANIMATION DES BORDURES AUSSI
                 borders.forEach(border => {
                     border.classList.add('playing');
                     border.classList.remove('opacity-30');
@@ -843,12 +850,10 @@
                 });
 
             } else {
-                // Musique OFF/Pause : On arrête l'animation
                 equalizer.classList.remove('playing');
                 equalizer.classList.add('opacity-50');
                 equalizer.classList.remove('opacity-100');
 
-                // STOP BORDURES
                 borders.forEach(border => {
                     border.classList.remove('playing');
                     border.classList.add('opacity-30');
